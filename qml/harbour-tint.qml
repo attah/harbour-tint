@@ -1,0 +1,62 @@
+import QtQuick 2.0
+import Sailfish.Silica 1.0
+import QtQuick.LocalStorage 2.0
+import "pages"
+import "jshue.js" as Jshue
+
+ApplicationWindow
+{
+    initialPage: Component { FirstPage { } }
+    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    allowedOrientations: Orientation.Portrait
+
+    Item {
+        id: hue_holder
+        property var hue
+
+        Component.onCompleted: {
+            hue = Jshue.jsHue();
+            console.log(Jshue);
+        }
+    }
+
+    Item {
+        id: db
+        property var db_conn
+        property ListModel favourites_model : ListModel { id: favouritesModel }
+
+        Component.onCompleted: {
+            db_conn = LocalStorage.openDatabaseSync("TintDB", "1.0", "Tint storage", 100000)
+            db_conn.transaction(function (tx) {
+//                tx.executeSql('DROP TABLE IF EXISTS Bridges');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS Bridges (id STRING UNIQUE, username STRING)');
+            });
+//            addHub("001788fffe4aa93c", "7tVeLUun9M-7CKznKMLEhY8n2fE9G3pKtnOCQBUk");
+        }
+
+
+        function addHub(id, username) {
+            db_conn.transaction(function (tx) {
+                tx.executeSql('INSERT INTO Bridges VALUES(?, ?)', [id, username] );
+            });
+        }
+        function removeHub(id) {
+            db_conn.transaction(function (tx) {
+                tx.executeSql('DELETE FROM Bridges WHERE id=?', [id] );
+            });
+        }
+        function getUsername(id) {
+            var username = "";
+            db_conn.transaction(function (tx) {
+                var res = tx.executeSql('SELECT username FROM Bridges WHERE id=?', [id] );
+                if (res.rows.length !== 0) {
+                    console.log(res.rows.item(0).username)
+                    username = res.rows.item(0).username;
+                }
+            });
+            return username
+        }
+
+    }
+
+}
