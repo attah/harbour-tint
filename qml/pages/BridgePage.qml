@@ -11,7 +11,7 @@ Page {
         console.log("hello", bridge);
         bridge.getGroup(0,
             function(attrs) {
-                groupsModel.append({room_id: "0", room: attrs});
+                groupsModel.insert(0, {room_id: "0", room: attrs});
             },
             function(error) {
                 console.error(error.message);

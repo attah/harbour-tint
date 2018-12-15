@@ -41,4 +41,15 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>NewLightsPage</name>
+    <message>
+        <source>New Lights</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search again</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

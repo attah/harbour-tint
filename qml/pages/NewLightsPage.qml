@@ -28,9 +28,10 @@ Page {
                     console.log('No lights found. :(');
                 }
                 else if (lights.lastscan !== "active") {
+                    retry.stop();
                     bridgesModel.clear();
                     for (var l in lights) {
-                        if (l === lastscan)
+                        if (l === "lastscan")
                             continue
                         bridgesModel.append({light_id: l, light: lights[l]})
                     };
@@ -46,7 +47,7 @@ Page {
     Timer {
         id: retry
         interval: 500; running: active_scan; repeat: true
-        onTriggered: { getNewLights();
+        onTriggered: { getNewLights(); }
     }
 
 
@@ -70,6 +71,7 @@ Page {
 
         PullDownMenu {
             id: searchMenu
+            busy: retry.running
 //            MenuItem {
 //                text: qsTr("Search by ID")
 //                onClicked: {console.log("Search by ID")}
