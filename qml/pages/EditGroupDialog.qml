@@ -11,8 +11,6 @@ Dialog {
     property var lights: []
 
     Component.onCompleted: {
-        console.log("hello", bridge, lights);
-
 
         bridge.getLights(
             function(lights) {

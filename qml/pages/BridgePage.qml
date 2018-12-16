@@ -8,7 +8,6 @@ Page {
 
     function populate() {
         groupsModel.clear();
-        console.log("hello", bridge);
         bridge.getGroup(0,
             function(attrs) {
                 groupsModel.insert(0, {room_id: "0", room: attrs});
@@ -25,7 +24,6 @@ Page {
                 }
                 else {
                     for (var g in groups) {
-                        console.log("gg",g);
                         groupsModel.append({room_id: g, room: groups[g]})
                     };
                 }
@@ -37,9 +35,7 @@ Page {
     }
 
     onStatusChanged: {
-        console.log("status", status);
         if (status == PageStatus.Active) {
-            console.log("pop");
             populate()
         }
     }
