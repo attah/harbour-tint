@@ -443,6 +443,16 @@ var jsHueAPI = function(XMLHttpRequest, JSON) {
                         setLightState: _parametrize(_put, function(id) {
                             return _slash(_lightUrl(id), 'state');
                         }),
+                        /**
+                         * Deletes a light.
+                         *
+                         * @method deleteLight
+                         * @param {Number} id light ID
+                         * @param {Function} success success callback
+                         * @param {Function} failure failure callback
+                         * @return {Boolean} true if request was sent, false otherwise
+                         */
+                        deleteLight: _parametrize(_delete, _lightUrl),
 
                         /* ================================================== */
                         /* Groups API                                         */

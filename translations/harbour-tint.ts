@@ -19,7 +19,7 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>Tint</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

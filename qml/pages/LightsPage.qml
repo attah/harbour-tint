@@ -6,7 +6,8 @@ Page {
 
     property var bridge
 
-    Component.onCompleted: {
+    function populate() {
+        lightsModel.clear();
         bridge.getLights(
             function(lights) {
                 if(lights.length === 0) {
@@ -22,6 +23,14 @@ Page {
                 console.error(error.message);
             }
         );
+    }
+
+    onStatusChanged: {
+        console.log("status", status);
+        if (status == PageStatus.Active) {
+            console.log("pop");
+            populate()
+        }
     }
 
     ListModel {
@@ -48,25 +57,76 @@ Page {
         delegate: ListItem {
             id: delegate
 
-                Row {
-                    id: lightRow
-                    anchors.fill: parent
+            Row {
+                id: lightRow
+                anchors.fill: parent
 
-                    Column {
-                        anchors.verticalCenter: parent.verticalCenter
-                        Label {
-                            x: Theme.horizontalPageMargin
-                            text: light.name
-                            color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-                        }
-                        Label {
-                            x: Theme.horizontalPageMargin
-                            text: light.type
-                            font.pixelSize: Theme.fontSizeTiny
-                        }
+                Switch {
+                    id: onoff
+                    checked: light.state.on
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: {
+                        bridge.setLightState(light_id, {on: checked},
+                                             function(success) {
+                                                 console.log("succ!", light_id,  JSON.stringify(success))
+
+                                             },
+                                             function(error) {
+                                                console.log("err!", JSON.stringify(error))
+
+                                             })
                     }
                 }
 
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    Label {
+                        x: Theme.horizontalPageMargin
+                        text: light.name
+                        color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
+                    }
+                    Label {
+                        x: Theme.horizontalPageMargin
+                        text: light.type
+                        font.pixelSize: Theme.fontSizeTiny
+                    }
+                }
+            }
+            menu: ContextMenu {
+                id: contextMenu
+
+                MenuItem {
+                    text: "Rename light"
+                    onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
+                                                            {name: light.name});
+                                dialog.accepted.connect(function() {
+                                    if (dialog.name !== light.name) {
+                                        bridge.setLight(light_id, {name: dialog.name},
+                                                        function(success) {
+                                                            console.log("light succ!", light_id,  JSON.stringify(success));
+                                                            page.populate();
+                                                        },
+                                                        function(error) {
+                                                           console.log("err!", JSON.stringify(error))
+                                                        });
+                                    }
+                                })
+                    }
+                }
+                MenuItem {
+                    text: "Delete light"
+                    onClicked: { Remorse.popupAction(page, "Deleting light",
+                                                     function() {bridge.deleteLight(light_id,
+                                                                                    function(success) {
+                                                                                        console.log("del succ!", light_id,  JSON.stringify(success));
+                                                                                        page.populate();
+                                                                                    },
+                                                                                    function(error) {
+                                                                                       console.log("err!", JSON.stringify(error))
+                                                                                    });})
+                               }
+                }
+            }
         }
         VerticalScrollDecorator {}
     }

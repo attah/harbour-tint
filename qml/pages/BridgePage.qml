@@ -36,7 +36,13 @@ Page {
         );
     }
 
-    Component.onCompleted: { populate() }
+    onStatusChanged: {
+        console.log("status", status);
+        if (status == PageStatus.Active) {
+            console.log("pop");
+            populate()
+        }
+    }
 
     ListModel {
         id: groupsModel
@@ -110,7 +116,11 @@ Page {
 //            menuOpen: room_id === "0"
 
             property bool longclicked: false
-            onClicked: {longclicked = false; openMenu()}
+            onClicked: {longclicked = false;
+                        if (onoff.checked) {
+                            openMenu()
+                        };
+            }
             onPressAndHold: {longclicked = true; openMenu()}
             menu: ContextMenu {
                 id: normalMenu

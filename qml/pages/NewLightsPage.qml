@@ -27,8 +27,7 @@ Page {
                 if(lights.length === 0) {
                     console.log('No lights found. :(');
                 }
-                else if (lights.lastscan !== "active") {
-                    retry.stop();
+                else {
                     bridgesModel.clear();
                     for (var l in lights) {
                         if (l === "lastscan")
@@ -36,6 +35,9 @@ Page {
                         bridgesModel.append({light_id: l, light: lights[l]})
                     };
                 }
+                if (lights.lastscan !== "active")
+                    retry.stop();
+
                 active_scan = lights.lastscan === "active";
             },
             function(error) {
