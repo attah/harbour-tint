@@ -37,7 +37,7 @@ Page {
             model: bridgesModel
             anchors.fill: parent
             header: PageHeader {
-                title: bridgesModel.count !== 0 ? "Avaliable hubs" : "No hubs found"
+                title: bridgesModel.count !== 0 ? "Available bridges" : "No bridges found"
             }
             delegate: ListItem {
                 id: delegate

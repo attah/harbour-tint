@@ -55,6 +55,10 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                text: qsTr("Bridge properties")
+                onClicked: pageStack.push(Qt.resolvedUrl("BridgePropertiesPage.qml"), {bridge: bridge})
+            }
+            MenuItem {
                 text: qsTr("Lights")
                 onClicked: pageStack.push(Qt.resolvedUrl("LightsPage.qml"), {bridge: bridge})
             }

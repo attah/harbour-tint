@@ -15,6 +15,21 @@
         <source>New group</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Bridge properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BridgePropertiesPage</name>
+    <message>
+        <source>Install updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
