@@ -33,14 +33,14 @@ Dialog {
         width: parent.width
 
         DialogHeader {
-            title: "Pairing"
+            title: qsTr("Pairing")
         }
 
         Label {
             id: nameField
             x: Theme.paddingMedium
             width: parent.width
-            text: "Press the pairing button"
+            text: qsTr("Press the pairing button")
         }
 
         Label {
@@ -48,15 +48,15 @@ Dialog {
             x: Theme.paddingMedium
             visible: false
             width: parent.width
-            text: "Success!"
+            text: qsTr("Success!")
         }
-        Image {
-            id: success
-            anchors.horizontalCenter: parent.horizontalCenter
-//            anchors.verticalCenter: parent.verticalCenter
-            source: "image://theme/icon-l-acknowledge"
+//        Image {
+//            id: success
+//            anchors.horizontalCenter: parent.horizontalCenter
+////            anchors.verticalCenter: parent.verticalCenter
+//            source: "image://theme/icon-l-acknowledge"
 
-        }
+//        }
     }
 
 

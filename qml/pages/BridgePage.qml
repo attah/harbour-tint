@@ -65,7 +65,7 @@ Page {
             MenuItem {
                 text: qsTr("New group")
                 onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
-                                                        {name: "New group"});
+                                                        {name: qsTr("New group")});
                             dialog.accepted.connect(function() {
                                 bridge.createGroup({name: dialog.name, type: "Room",},
                                                 function(success) {
@@ -110,7 +110,7 @@ Page {
                     }
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: room_id == 0 ? "Global" : room.name
+                        text: room_id == 0 ? qsTr("Global") : room.name
                     }
                 }
 //            menuOpen: room_id === "0"
@@ -127,7 +127,7 @@ Page {
 
                 MenuItem {
                     visible: longclicked
-                    text: "Edit group"
+                    text: qsTr("Edit group")
                     onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("EditGroupDialog.qml"),
                                                             {bridge: bridge, group_id: room_id, lights: room.lights});
                                 dialog.accepted.connect(function() {
@@ -147,7 +147,7 @@ Page {
 
                 MenuItem {
                     visible: longclicked
-                    text: "Rename group"
+                    text: qsTr("Rename group")
                     onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
                                                             {name: room.name});
                                 dialog.accepted.connect(function() {
@@ -167,8 +167,8 @@ Page {
 
                 MenuItem {
                     visible: longclicked
-                    text: "Delete group"
-                    onClicked: { Remorse.popupAction(page, "Deleting group",
+                    text: qsTr("Delete group")
+                    onClicked: { Remorse.popupAction(page, qsTr("Deleting group"),
                                                      function() {bridge.deleteGroup(room_id,
                                                                                  function(success) {
                                                                                      console.log("del succ!", room_id,  JSON.stringify(success));
@@ -209,7 +209,7 @@ Page {
                     visible: !longclicked && room.action.ct !== undefined
 
                     Label {
-                        text: "Ct"
+                        text: qsTr("Ct") // Color temperature
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     PacedSlider {
@@ -235,7 +235,7 @@ Page {
                     visible: !longclicked && room.action.hue !== undefined
 
                     Label {
-                        text: "Hue"
+                        text: qsTr("Hue")
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     PacedSlider {
@@ -261,7 +261,7 @@ Page {
                     visible: !longclicked && room.action.sat !== undefined
 
                     Label {
-                        text: "Sat"
+                        text: qsTr("Sat")
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     PacedSlider {

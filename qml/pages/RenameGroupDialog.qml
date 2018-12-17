@@ -18,7 +18,7 @@ Dialog {
             width: parent.width
             placeholderText: name
 
-            label: "Name"
+            label: qsTr("Name")
         }
     }
 

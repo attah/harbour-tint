@@ -37,7 +37,7 @@ Page {
             model: bridgesModel
             anchors.fill: parent
             header: PageHeader {
-                title: bridgesModel.count !== 0 ? "Available bridges" : "No bridges found"
+                title: bridgesModel.count !== 0 ? qsTr("Available bridges") : qsTr("No bridges found")
             }
             delegate: ListItem {
                 id: delegate
@@ -86,7 +86,7 @@ Page {
                 id: contextMenu
                 hasContent: known.enabled
                 MenuItem {
-                    text: "Unpair"
+                    text: qsTr("Unpair")
                     onClicked: {
                         var username = db.getUsername(id);
                         if (username != "") {
