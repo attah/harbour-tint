@@ -16,6 +16,7 @@ CONFIG += sailfishapp_qml
 
 DISTFILES += qml/harbour-tint.qml \
     qml/cover/CoverPage.qml \
+    qml/cover*.png \
     qml/pages/*.qml \
     qml/jshue.js \
     rpm/harbour-tint.changes.in \
