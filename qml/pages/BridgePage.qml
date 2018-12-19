@@ -6,6 +6,10 @@ Page {
 
     property var bridge
 
+    Component.onCompleted: {
+        appWin.current_bridge = bridge;
+    }
+
     function populate() {
         groupsModel.clear();
         bridge.getGroup(0,
@@ -18,7 +22,6 @@ Page {
         );
         bridge.getGroups(
             function(groups) {
-                console.log(JSON.stringify(groups))
                 if(groups.length === 0) {
                     console.log('No groups found. :(');
                 }
@@ -93,14 +96,14 @@ Page {
                     anchors.fill: parent
                     Switch {
                         id: onoff
-                        checked: room.action.on
+                        checked: room.state.any_on
                         enabled: room.lights !== []
                         anchors.verticalCenter: parent.verticalCenter
                         onClicked: {
                             bridge.setGroupState(room_id, {on: checked},
                                                  function(success) {
                                                      console.log("succ!", room_id,  JSON.stringify(success))
-
+                                                     page.populate()
                                                  },
                                                  function(error) {
                                                     console.log("err!", JSON.stringify(error))

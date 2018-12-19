@@ -133,10 +133,6 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Hub</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Available bridges</source>
         <translation type="unfinished"></translation>
     </message>
@@ -146,6 +142,10 @@
     </message>
     <message>
         <source>Unpair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bridge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

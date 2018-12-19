@@ -4,33 +4,38 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    onVisibleChanged: {
+        if (visible)
+            populate()
+    }
+
+    function populate() {
+        bridgesModel.clear();
+        hue_holder.hue.discover(
+            function(bridges) {
+                if(bridges.length === 0) {
+                    console.log('No bridges found. :(');
+                }
+                else {
+                    bridges.forEach(function(b) {
+                        console.log('Bridge found at IP address %s.', b.internalipaddress, b.id);
+                        bridgesModel.append(b);
+                    });
+                }
+            },
+            function(error) {
+                console.error(error.message);
+            }
+        );
+    }
+
+    ListModel {
+        id: bridgesModel
+    }
+
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         anchors.fill: parent
-
-        Component.onCompleted: {
-            hue_holder.hue.discover(
-                function(bridges) {
-                    if(bridges.length === 0) {
-                        console.log('No bridges found. :(');
-                    }
-                    else {
-                        bridges.forEach(function(b) {
-                            console.log('Bridge found at IP address %s.', b.internalipaddress, b.id);
-                            bridgesModel.append(b);
-                        });
-                    }
-                },
-                function(error) {
-                    console.error(error.message);
-                }
-            );
-        }
-
-        ListModel {
-            id: bridgesModel
-        }
-
 
         SilicaListView {
             id: listView
@@ -53,7 +58,7 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
 
                     Label    {
-                        text: qsTr("Hub") + " " + (index+1) + ": " + id
+                        text: qsTr("Bridge") + " " + (index+1) + ": " + id
                         anchors.verticalCenter: parent.verticalCenter
                         color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                         width: parent.width - known.width
@@ -69,7 +74,7 @@ Page {
                     }
                 }
                 onClicked: { if (known.enabled) {
-                                 pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(id))})
+                                pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(id))})
                              }
                              else {
                                 var dialog = pageStack.push(Qt.resolvedUrl("PairDialog.qml"), {bridge: bridge});

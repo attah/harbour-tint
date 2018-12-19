@@ -6,9 +6,13 @@ import "jshue.js" as Jshue
 
 ApplicationWindow
 {
+    id: appWin
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.Portrait
+
+    property var current_global_group
+    property var current_bridge
 
     Item {
         id: hue_holder
