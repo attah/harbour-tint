@@ -116,7 +116,6 @@ Page {
                         text: room_id == 0 ? qsTr("Global") : room.name
                     }
                 }
-//            menuOpen: room_id === "0"
 
             property bool longclicked: false
             onClicked: {longclicked = false;
@@ -124,12 +123,12 @@ Page {
                             openMenu()
                         };
             }
-            onPressAndHold: {longclicked = true; openMenu()}
+            onPressAndHold: {longclicked = true;}
             menu: ContextMenu {
                 id: normalMenu
 
                 MenuItem {
-                    visible: longclicked
+                    visible: room_id != 0 && longclicked
                     text: qsTr("Edit group")
                     onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("EditGroupDialog.qml"),
                                                             {bridge: bridge, group_id: room_id, lights: room.lights});
@@ -149,7 +148,7 @@ Page {
                 }
 
                 MenuItem {
-                    visible: longclicked
+                    visible: room_id != 0 && longclicked
                     text: qsTr("Rename group")
                     onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
                                                             {name: room.name});
@@ -169,7 +168,7 @@ Page {
                 }
 
                 MenuItem {
-                    visible: longclicked
+                    visible: room_id != 0 && longclicked
                     text: qsTr("Delete group")
                     onClicked: { Remorse.popupAction(page, qsTr("Deleting group"),
                                                      function() {bridge.deleteGroup(room_id,
