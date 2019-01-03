@@ -39,18 +39,6 @@
         <source>Deleting group</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Ct</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sat</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>BridgePropertiesPage</name>

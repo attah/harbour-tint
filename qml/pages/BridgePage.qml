@@ -210,10 +210,14 @@ Page {
                 MenuItem {
                     visible: !longclicked && room.action.ct !== undefined
 
-                    Label {
-                        text: qsTr("Ct") // Color temperature
-                        anchors.verticalCenter: parent.verticalCenter
+                    Image {
+                        id: ct_icon
+                        source: "ct.png"
                     }
+//                    Label {
+//                        text: qsTr("Ct") // Color temperature
+//                        anchors.verticalCenter: parent.verticalCenter
+//                    }
                     PacedSlider {
                         id: ct_slider
                         minimumValue: 153
@@ -236,10 +240,14 @@ Page {
                 MenuItem {
                     visible: !longclicked && room.action.hue !== undefined
 
-                    Label {
-                        text: qsTr("Hue")
-                        anchors.verticalCenter: parent.verticalCenter
+                    Image {
+                        id: hue_icon
+                        source: "rgb.png"
                     }
+//                    Label {
+//                        text: qsTr("Hue")
+//                        anchors.verticalCenter: parent.verticalCenter
+//                    }
                     PacedSlider {
                         id: hue_slider
                         minimumValue: 0
@@ -262,10 +270,15 @@ Page {
                 MenuItem {
                     visible: !longclicked && room.action.sat !== undefined
 
-                    Label {
-                        text: qsTr("Sat")
-                        anchors.verticalCenter: parent.verticalCenter
+                    Image {
+                        id: sat_icon
+                        source: "image://theme/icon-m-light-contrast"
                     }
+
+//                    Label {
+//                        text: qsTr("Sat")
+//                        anchors.verticalCenter: parent.verticalCenter
+//                    }
                     PacedSlider {
                         id: sat_slider
                         minimumValue: 0

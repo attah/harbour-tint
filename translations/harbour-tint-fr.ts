@@ -39,18 +39,6 @@
         <source>Deleting group</source>
         <translation>Suppression du groupe</translation>
     </message>
-    <message>
-        <source>Ct</source>
-        <translation>Ct</translation>
-    </message>
-    <message>
-        <source>Hue</source>
-        <translation>Teinte</translation>
-    </message>
-    <message>
-        <source>Sat</source>
-        <translation>Sat</translation>
-    </message>
 </context>
 <context>
     <name>BridgePropertiesPage</name>
