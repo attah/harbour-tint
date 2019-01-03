@@ -45,14 +45,13 @@ Page {
     }
 
 
-    onStatusChanged: {
-        console.log("status\n\n\n", status);
-        if (status == PageStatus.Active) {
+    onVisibleChanged: {
+        if (visible) {
             console.log("pop");
             populate();
             repopulate_timer.start();
         }
-        else if (status === PageStatus.Inactive) {
+        else {
             repopulate_timer.stop();
         }
     }

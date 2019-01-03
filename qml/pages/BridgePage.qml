@@ -37,8 +37,8 @@ Page {
         );
     }
 
-    onStatusChanged: {
-        if (status == PageStatus.Active) {
+    onVisibleChanged: {
+        if (visible) {
             populate()
         }
     }

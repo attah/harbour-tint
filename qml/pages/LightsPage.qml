@@ -25,9 +25,9 @@ Page {
         );
     }
 
-    onStatusChanged: {
+    onVisibleChanged: {
         console.log("status", status);
-        if (status == PageStatus.Active) {
+        if (visible) {
             console.log("pop");
             populate()
         }
