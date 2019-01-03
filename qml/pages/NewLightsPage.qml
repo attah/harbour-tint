@@ -46,6 +46,19 @@ Page {
         );
     }
 
+    function touchLink() {
+        console.log("searching");
+        active_scan = true;
+        bridge.setConfig({touchlink: true},
+                    function(success) {
+                        console.log(JSON.stringify(success))
+                    },
+                    function(error) {
+                        console.error(JSON.stringify(error));
+                    }
+                );
+    }
+
     Timer {
         id: retry
         interval: 500; running: active_scan; repeat: true
@@ -78,6 +91,10 @@ Page {
 //                text: qsTr("Search by ID")
 //                onClicked: {console.log("Search by ID")}
 //            }
+            MenuItem {
+                text: qsTr("Enable TouchLink")
+                onClicked: touchLink()
+            }
             MenuItem {
                 text: qsTr("Search again")
                 onClicked: {console.log("Search again"); search()}

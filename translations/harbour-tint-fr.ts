@@ -170,6 +170,10 @@
         <source>Search again</source>
         <translation>Chercher à nouveau</translation>
     </message>
+    <message>
+        <source>Enable TouchLink</source>
+        <translation>Activer TouchLink</translation>
+    </message>
 </context>
 <context>
     <name>PairDialog</name>

@@ -48,9 +48,6 @@ Dialog {
         delegate: ListItem {
             id: delegate
 
-                Component.onCompleted: {
-                    console.log("iam", light_id, lights.indexOf(light_id))
-                }
 
                 onClicked: {
                     chosen.checked = !chosen.checked
@@ -64,12 +61,12 @@ Dialog {
                         id: chosen
                         checked: lights.indexOf(light_id) !== -1
                         anchors.verticalCenter: parent.verticalCenter
-                        onCheckedChanged: { if(chosen.checked) {
-                                                lights.push(light_id)
-                                            }
-                                            else {
-                                                lights = lights.filter(function filter(elem) {return elem !== light_id})
-                                            };
+                        onCheckedChanged: {
+                            // Always remove, maybe add (initializing counts as changing -.-')
+                            lights = lights.filter(function filter(elem) {return elem !== light_id})
+                            if(chosen.checked) {
+                                lights.push(light_id)
+                            };
                         }
                     }
 

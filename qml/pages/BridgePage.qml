@@ -5,6 +5,7 @@ Page {
     id: page
 
     property var bridge
+    property bool suppress_refresh: false
 
     Component.onCompleted: {
         appWin.current_bridge = bridge;
@@ -38,8 +39,13 @@ Page {
     }
 
     onVisibleChanged: {
+        console.log("derp", visible, suppress_refresh)
         if (visible) {
-            populate()
+            // Apparently refreshing interfers with the dialog.accepted.connect-ions, so they supress it (once)
+            if(!suppress_refresh) {
+                populate()
+            }
+            suppress_refresh = false
         }
     }
 
@@ -130,11 +136,13 @@ Page {
                 MenuItem {
                     visible: room_id != 0 && longclicked
                     text: qsTr("Edit group")
-                    onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("EditGroupDialog.qml"),
+                    onClicked: {suppress_refresh = true;
+                                var dialog = pageStack.push(Qt.resolvedUrl("EditGroupDialog.qml"),
                                                             {bridge: bridge, group_id: room_id, lights: room.lights});
                                 dialog.accepted.connect(function() {
                                     if (dialog.lights) {
-                                        bridge.setGroup(room_id, {lights: dialog.lights},
+                                        console.log(dialog.lights);
+                                        page.bridge.setGroup(room_id, {lights: dialog.lights},
                                                         function(success) {
                                                             console.log("light succ!", room_id,  JSON.stringify(success));
                                                             page.populate();
@@ -150,7 +158,8 @@ Page {
                 MenuItem {
                     visible: room_id != 0 && longclicked
                     text: qsTr("Rename group")
-                    onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
+                    onClicked: {suppress_refresh = true;
+                                var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
                                                             {name: room.name});
                                 dialog.accepted.connect(function() {
                                     if (dialog.name !== room.name) {
