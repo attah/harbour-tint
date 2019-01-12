@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
 import "pages"
 import "jshue.js" as Jshue
+import tint.huediscovery 1.0
 
 ApplicationWindow
 {

@@ -12,7 +12,7 @@
 # The name of your application
 TARGET = harbour-tint
 
-CONFIG += sailfishapp_qml
+CONFIG += sailfishapp
 
 DISTFILES += qml/harbour-tint.qml \
     qml/cover/CoverPage.qml \
@@ -43,3 +43,10 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-tint-fr.ts
+
+HEADERS += \
+    huediscovery.h
+
+SOURCES += \
+    huediscovery.cpp \
+    harbour-tint.cpp

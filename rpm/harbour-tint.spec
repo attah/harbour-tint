@@ -4,6 +4,7 @@
 # 
 
 Name:       harbour-tint
+
 # >> macros
 # << macros
 
@@ -12,11 +13,10 @@ Name:       harbour-tint
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Philips Hue app for Sailfish OS
-Version:    0.4.1
+Version:    0.5
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-BuildArch:  noarch
 URL:        https://github.com/attah/harbour-tint
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-tint.yaml
@@ -32,6 +32,7 @@ BuildRequires:  desktop-file-utils
 Provides basic controls for Philips Hue lights.
 (Groups and Lights)
 This is an early version, more functionalities to come, and contributors wanted.
+
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -65,6 +66,7 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
+%{_bindir}
 %defattr(0644,root,root,-)
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop

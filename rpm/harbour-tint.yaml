@@ -1,19 +1,20 @@
 Name: harbour-tint
-Summary: My Sailfish OS Application
-Version: 0.1
+Summary: Philips Hue app for Sailfish OS
+Version: 0.5
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
 Group: Qt/Qt
-URL: http://example.org/
-BuildArch: noarch
+URL: https://github.com/attah/harbour-tint
 License: LICENSE
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Short description of my Sailfish OS Application
+  Provides basic controls for Philips Hue lights.
+  (Groups and Lights)
+  This is an early version, more functionalities to come, and contributors wanted.
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution
@@ -38,6 +39,7 @@ Requires:
 
 # All installed files
 Files:
+  - '%{_bindir}'
   - '%defattr(0644,root,root,-)'
   - '%{_datadir}/%{name}'
   - '%{_datadir}/applications/%{name}.desktop'
