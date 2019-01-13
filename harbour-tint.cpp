@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-    qmlRegisterType<HueDiscovery>("tint.huediscovery", 1, 0, "HueDiscovery");
+    qmlRegisterType<HueDiscovery>("tint.huediscovery", 1, 0, "HueDiscoveryModel");
     // SailfishApp::main() will display "qml/cpp-test.qml", if you need more
     // control over initialization, you can use:
     //

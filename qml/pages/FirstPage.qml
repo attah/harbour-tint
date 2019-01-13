@@ -1,8 +1,10 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import tint.huediscovery 1.0
 
 Page {
     id: page
+    property bool first_start: true
 
     onVisibleChanged: {
         if (visible)
@@ -10,30 +12,13 @@ Page {
     }
 
     function populate() {
-        bridgesModel.clear();
-        hue_holder.hue.discover(
-            function(bridges) {
-                if(bridges.length === 0) {
-                    console.log('No bridges found. :(');
-                }
-                else {
-                    bridges.forEach(function(b) {
-                        console.log('Bridge found at IP address %s.', b.internalipaddress, b.id);
-                        bridgesModel.append(b);
-                    });
-                }
-            },
-            function(error) {
-                console.error(error.message);
-            }
-        );
+        bridgesModel.reset();
     }
 
-    ListModel {
+    HueDiscoveryModel {
         id: bridgesModel
     }
 
-    // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         anchors.fill: parent
 
@@ -44,12 +29,26 @@ Page {
             header: PageHeader {
                 title: bridgesModel.count !== 0 ? qsTr("Available bridges") : qsTr("No bridges found")
             }
+
+
+            PullDownMenu {
+                MenuItem {
+                    text: qsTr("Refresh")
+                    onClicked: populate()
+                }
+            }
+
             delegate: ListItem {
                 id: delegate
                 property var bridge
 
                 Component.onCompleted: {
                     bridge = hue_holder.hue.bridge(internalipaddress)
+                    console.log(page.first_start, db.isFavourite(id), db.getUsername(id) != "");
+                    if(page.first_start && db.isFavourite(id) && db.getUsername(id) != "") {
+                        page.first_start = false;
+                        pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(id))});
+                    }
                 }
 
                 Row {
@@ -74,6 +73,7 @@ Page {
                     }
                 }
                 onClicked: { if (known.enabled) {
+                                db.setFavourite(id);
                                 pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(id))})
                              }
                              else {

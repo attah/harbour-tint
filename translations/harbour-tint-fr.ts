@@ -136,6 +136,10 @@
         <source>Bridge</source>
         <translation>Pont</translation>
     </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LightsPage</name>

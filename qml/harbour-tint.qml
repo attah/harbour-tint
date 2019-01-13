@@ -3,7 +3,6 @@ import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
 import "pages"
 import "jshue.js" as Jshue
-import tint.huediscovery 1.0
 
 ApplicationWindow
 {
@@ -35,10 +34,11 @@ ApplicationWindow
             db_conn.transaction(function (tx) {
 //                tx.executeSql('DROP TABLE IF EXISTS Bridges');
                 tx.executeSql('CREATE TABLE IF NOT EXISTS Bridges (id STRING UNIQUE, username STRING)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS LastBridge (id STRING UNIQUE)');
+
             });
 //            addHub("001788fffe4aa93c", "7tVeLUun9M-7CKznKMLEhY8n2fE9G3pKtnOCQBUk");
         }
-
 
         function addHub(id, username) {
             db_conn.transaction(function (tx) {
@@ -60,6 +60,24 @@ ApplicationWindow
                 }
             });
             return username
+        }
+        function setFavourite(id) {
+            db_conn.transaction(function (tx) {
+                console.log("fav!!!",id);
+                tx.executeSql('REPLACE INTO LastBridge VALUES(?)', [id] );
+            });
+        }
+        function isFavourite(id) {
+            var isFav = false;
+            db_conn.transaction(function (tx) {
+                console.log("isfav?");
+                var res = tx.executeSql('SELECT * FROM LastBridge WHERE id=?', [id] );
+                if (res.rows.length !== 0) {
+                    console.log("isfav!");
+                    isFav = true;
+                }
+            });
+            return isFav
         }
 
     }
