@@ -13,9 +13,7 @@ Page {
                 console.log("cfg", JSON.stringify(cfg));
                 config = cfg;
             },
-            function(error) {
-                console.error(error.message);
-            }
+            notifier.notifyMessage
         );
     }
 
@@ -68,9 +66,7 @@ Page {
                                                  console.log("up succ!",  JSON.stringify(success));
                                                  page.populate();
                                              },
-                                             function(error) {
-                                                console.log("err!", JSON.stringify(error))
-                                             });
+                                             notifier.notifyMessage);
                 }
             }
             MenuItem {
@@ -82,9 +78,7 @@ Page {
                                                                                  console.log("up succ!",  JSON.stringify(success));
                                                                                  page.populate();
                                                                              },
-                                                                             function(error) {
-                                                                                console.log("err!", JSON.stringify(error))
-                                                                             });})
+                                                                             notifier.notifyMessage);})
                 }
             }
         }

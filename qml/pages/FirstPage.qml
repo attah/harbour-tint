@@ -99,9 +99,7 @@ Page {
                                               function(success) {
                                                   console.log("DeleteUser success", JSON.stringify(success))
                                               },
-                                              function(error) {
-                                                  console.log("DeleteUser error", JSON.stringify(error))
-                                              }
+                                              notifier.notifyMessage
                                              )
                         };
                         db.removeHub(id);

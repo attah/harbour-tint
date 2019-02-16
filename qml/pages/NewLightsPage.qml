@@ -14,9 +14,7 @@ Page {
                     function(success) {
                         console.log(JSON.stringify(success))
                     },
-                    function(error) {
-                        console.error(JSON.stringify(error));
-                    }
+                    notifier.notifyMessage
                 );
     }
 
@@ -40,9 +38,7 @@ Page {
 
                 active_scan = lights.lastscan === "active";
             },
-            function(error) {
-                console.error(error.message);
-            }
+            notifier.notifyMessage
         );
     }
 
@@ -53,9 +49,7 @@ Page {
                     function(success) {
                         console.log(JSON.stringify(success))
                     },
-                    function(error) {
-                        console.error(JSON.stringify(error));
-                    }
+                    notifier.notifyMessage
                 );
     }
 

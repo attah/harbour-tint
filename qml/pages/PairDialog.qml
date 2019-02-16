@@ -14,8 +14,6 @@ Dialog {
         interval: pace; running: true; repeat: true
         onTriggered: { bridge.createUser("Tint",
                                          function(success) {
-                                             if (success[0].error)
-                                                 return;
                                              retry.stop();
                                              console.log(JSON.stringify(success));
                                              username=success[0].success.username;
@@ -23,9 +21,7 @@ Dialog {
                                              canAccept = true;
                                              console.log(username)
                                          },
-                                         function(error) {
-                                             console.log(error)
-                                         });
+                                         notifier.notifyMessage);
                         console.log("boop");}
     }
 

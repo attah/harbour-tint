@@ -19,9 +19,7 @@ Page {
                     };
                 }
             },
-            function(error) {
-                console.error(error.message);
-            }
+            notifier.notifyMessage
         );
     }
 
@@ -71,10 +69,7 @@ Page {
                                                  console.log("succ!", light_id,  JSON.stringify(success))
 
                                              },
-                                             function(error) {
-                                                console.log("err!", JSON.stringify(error))
-
-                                             })
+                                             notifier.notifyMessage)
                     }
                 }
 
@@ -106,9 +101,7 @@ Page {
                                                             console.log("light succ!", light_id,  JSON.stringify(success));
                                                             page.populate();
                                                         },
-                                                        function(error) {
-                                                           console.log("err!", JSON.stringify(error))
-                                                        });
+                                                        notifier.notifyMessage);
                                     }
                                 })
                     }
@@ -121,9 +114,9 @@ Page {
                                                                                         console.log("del succ!", light_id,  JSON.stringify(success));
                                                                                         page.populate();
                                                                                     },
-                                                                                    function(error) {
-                                                                                       console.log("err!", JSON.stringify(error))
-                                                                                    });})
+                                                                                    notifier.notifyMessage);
+                                                                }
+                                                     )
                                }
                 }
             }

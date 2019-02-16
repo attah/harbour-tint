@@ -17,9 +17,7 @@ Page {
             function(attrs) {
                 groupsModel.insert(0, {room_id: "0", room: attrs});
             },
-            function(error) {
-                console.error(error.message);
-            }
+            notifier.notifyMessage
         );
         bridge.getGroups(
             function(groups) {
@@ -32,9 +30,7 @@ Page {
                     };
                 }
             },
-            function(error) {
-                console.error(error.message);
-            }
+            notifier.notifyMessage
         );
     }
 
@@ -81,9 +77,7 @@ Page {
                                                     console.log("light succ!",  JSON.stringify(success));
                                                     page.populate();
                                                 },
-                                                function(error) {
-                                                   console.log("err!", JSON.stringify(error))
-                                                });
+                                                notifier.notifyMessage);
                         })
                 }
             }
@@ -111,10 +105,7 @@ Page {
                                                      console.log("succ!", room_id,  JSON.stringify(success))
                                                      page.populate()
                                                  },
-                                                 function(error) {
-                                                    console.log("err!", JSON.stringify(error))
-
-                                                 })
+                                                 notifier.notifyMessage)
                         }
                     }
                     Label {
@@ -147,9 +138,7 @@ Page {
                                                             console.log("light succ!", room_id,  JSON.stringify(success));
                                                             page.populate();
                                                         },
-                                                        function(error) {
-                                                           console.log("err!", JSON.stringify(error))
-                                                        });
+                                                        notifier.notifyMessage);
                                     }
                                 })
                     }
@@ -168,9 +157,7 @@ Page {
                                                             console.log("light succ!", room_id,  JSON.stringify(success));
                                                             page.populate();
                                                         },
-                                                        function(error) {
-                                                           console.log("err!", JSON.stringify(error))
-                                                        });
+                                                        notifier.notifyMessage);
                                     }
                                 })
                     }
@@ -185,9 +172,9 @@ Page {
                                                                                      console.log("del succ!", room_id,  JSON.stringify(success));
                                                                                      page.populate();
                                                                                  },
-                                                                                 function(error) {
-                                                                                    console.log("err!", JSON.stringify(error))
-                                                                                 });})
+                                                                                 notifier.notifyMessage);
+                                                                }
+                                                     )
                                }
                 }
 
@@ -210,9 +197,7 @@ Page {
                                                  function(success) {
                                                      console.log("succ!", room_id,  JSON.stringify(success))
                                                  },
-                                                 function(error) {
-                                                    console.log("err!", JSON.stringify(error))
-                                                 })
+                                                 notifier.notifyMessage)
                         }
                     }
                 }
@@ -240,9 +225,7 @@ Page {
                                                  function(success) {
                                                      console.log("succ!", room_id,  JSON.stringify(success))
                                                  },
-                                                 function(error) {
-                                                    console.log("err!", JSON.stringify(error))
-                                                 })
+                                                 notifier.notifyMessage)
                         }
                     }
                 }
@@ -270,9 +253,7 @@ Page {
                                                  function(success) {
                                                      console.log("succ!", room_id,  JSON.stringify(success))
                                                  },
-                                                 function(error) {
-                                                    console.log("err!", JSON.stringify(error))
-                                                 })
+                                                 notifier.notifyMessage)
                         }
                     }
                 }
@@ -301,9 +282,7 @@ Page {
                                                  function(success) {
                                                      console.log("succ!", room_id,  JSON.stringify(success))
                                                  },
-                                                 function(error) {
-                                                    console.log("err!", JSON.stringify(error))
-                                                 })
+                                                 notifier.notifyMessage)
                         }
                     }
                 }

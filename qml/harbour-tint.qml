@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
+import org.nemomobile.notifications 1.0
 import "pages"
 import "jshue.js" as Jshue
 
@@ -21,6 +22,19 @@ ApplicationWindow
         Component.onCompleted: {
             hue = Jshue.jsHue();
             console.log(Jshue);
+        }
+    }
+
+    Notification {
+        id: notifier
+
+        expireTimeout: 4000
+
+        function notifyMessage(data) {
+            console.log("notifyMessage", data)
+            body = data.message
+            previewBody = data.message
+            publish()
         }
     }
 

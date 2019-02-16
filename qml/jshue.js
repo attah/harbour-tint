@@ -109,8 +109,13 @@ var jsHueAPI = function(XMLHttpRequest, JSON) {
                 failure && failure({ type: 'json', message: e.message });
                 return false;
             }
-
-            success && success(data);
+            if(data[0] && data[0].error) {
+                failure && failure({type: data[0].error.type, address: data[0].error.address, message: data[0].error.description});
+                return false;
+            }
+            else {
+                success && success(data);
+            }
         };
 
         if(data !== null) {
