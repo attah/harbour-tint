@@ -140,6 +140,10 @@
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unpairing bridge</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LightsPage</name>

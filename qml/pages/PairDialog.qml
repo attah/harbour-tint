@@ -11,7 +11,7 @@ Dialog {
 
     Timer {
         id: retry
-        interval: pace; running: true; repeat: true
+        interval: 1000; running: true; repeat: true
         onTriggered: { bridge.createUser("Tint",
                                          function(success) {
                                              retry.stop();
@@ -21,7 +21,7 @@ Dialog {
                                              canAccept = true;
                                              console.log(username)
                                          },
-                                         notifier.notifyMessage);
+                                         function(error){console.log(error)}); //some errors are expected until press happens, don't bother the user
                         console.log("boop");}
     }
 

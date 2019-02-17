@@ -44,10 +44,10 @@ Page {
 
                 Component.onCompleted: {
                     bridge = hue_holder.hue.bridge(internalipaddress)
-                    console.log(page.first_start, db.isFavourite(id), db.getUsername(id) != "");
-                    if(page.first_start && db.isFavourite(id) && db.getUsername(id) != "") {
+                    console.log(page.first_start, db.isFavourite(model.id), db.getUsername(model.id) != "");
+                    if(page.first_start && db.isFavourite(model.id) && db.getUsername(model.id) != "") {
                         page.first_start = false;
-                        pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(id))});
+                        pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(model.id))});
                     }
                 }
 
@@ -57,7 +57,7 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
 
                     Label    {
-                        text: qsTr("Bridge") + " " + (index+1) + ": " + id
+                        text: qsTr("Bridge") + " " + (index+1) + ": " + model.id
                         anchors.verticalCenter: parent.verticalCenter
                         color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                         width: parent.width - known.width
@@ -69,21 +69,28 @@ Page {
                         onClicked: {}
 
                         anchors.verticalCenter: parent.verticalCenter
-                        enabled: db.getUsername(id) !== ""
+                        enabled: db.getUsername(model.id) !== ""
                     }
                 }
-                onClicked: { if (known.enabled) {
-                                db.setFavourite(id);
-                                pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(id))})
+                onClicked: {
+                             console.log("db", db );
+                             if (known.enabled) {
+                                db.setFavourite(model.id);
+                                pageStack.push(Qt.resolvedUrl("BridgePage.qml"), {bridge: bridge.user(db.getUsername(model.id))})
                              }
                              else {
-                                var dialog = pageStack.push(Qt.resolvedUrl("PairDialog.qml"), {bridge: bridge});
-                                dialog.accepted.connect(function() {
-                                    if (dialog.username) {
-                                        db.addHub(id, dialog.username);
-                                        known.enabled = db.getUsername(id) !== "";
-                                    }
-                                })
+                                var dialog = pageStack.push(Qt.resolvedUrl("PairDialog.qml"), {bridge: bridge})
+                                dialog.accepted.connect(
+                                    function(bridge_id, db) {
+                                        return function() {
+                                            console.log("db2", db);
+                                            if (dialog.username) {
+                                                db.addHub(bridge_id, dialog.username);
+                                                known.enabled = db.getUsername(bridge_id) !== "";
+                                            }
+                                        }
+                                    }(model.id, db)
+                                )
                             }
                 }
 
@@ -93,17 +100,21 @@ Page {
                 MenuItem {
                     text: qsTr("Unpair")
                     onClicked: {
-                        var username = db.getUsername(id);
-                        if (username != "") {
-                            bridge.user(username).deleteUser(username,
-                                              function(success) {
-                                                  console.log("DeleteUser success", JSON.stringify(success))
-                                              },
-                                              notifier.notifyMessage
-                                             )
-                        };
-                        db.removeHub(id);
-                        known.enabled = db.getUsername(id) !== "";
+                        Remorse.popupAction(page, qsTr("Unpairing bridge"),
+                            function() {
+                                var username = db.getUsername(id);
+                                if (username != "") {
+                                    bridge.user(username).deleteUser(username,
+                                                      function(success) {
+                                                          console.log("DeleteUser success", JSON.stringify(success))
+                                                      },
+                                                      notifier.notifyMessage
+                                                     )
+                                };
+                                db.removeHub(id);
+                                known.enabled = db.getUsername(id) !== "";
+                            }
+                         )
                     }
                 }
             }

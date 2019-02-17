@@ -51,12 +51,11 @@ ApplicationWindow
                 tx.executeSql('CREATE TABLE IF NOT EXISTS LastBridge (id STRING UNIQUE)');
 
             });
-//            addHub("001788fffe4aa93c", "7tVeLUun9M-7CKznKMLEhY8n2fE9G3pKtnOCQBUk");
         }
 
         function addHub(id, username) {
             db_conn.transaction(function (tx) {
-                tx.executeSql('INSERT INTO Bridges VALUES(?, ?)', [id, username] );
+                tx.executeSql('REPLACE INTO Bridges VALUES(?, ?)', [id, username] );
             });
         }
         function removeHub(id) {
