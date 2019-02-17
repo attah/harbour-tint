@@ -27,16 +27,18 @@ Page {
     onConfigChanged: {
         if(repopulate_timer.running) {
             // Cancel criterias
-            if(config.swupdate2.state === "unknown" ||
-               config.swupdate2.state === "noupdates"||
-               config.swupdate2.state === "allreadytoinstall") {
+            if(config.swupdate2.checkforupdate === false &&
+               (config.swupdate2.state === "unknown" ||
+                config.swupdate2.state === "noupdates"||
+                config.swupdate2.state === "allreadytoinstall")) {
                 repopulate_timer.stop();
             }
         }
         else {
             // Poll criterias
             if(config.swupdate2.state === "transferring" ||
-               config.swupdate2.state === "installing") {
+               config.swupdate2.state === "installing" ||
+               config.swupdate2.checkforupdate === true) {
                 repopulate_timer.start();
             }
         }
@@ -58,9 +60,11 @@ Page {
         anchors.fill: parent
 
         PullDownMenu {
+            busy: config.swupdate2.checkforupdate === true || config.swupdate2.state === "transferring" || config.swupdate2.state === "installing"
+
             MenuItem {
                 text: qsTr("Check for updates")
-                visible: config.swupdate2.state === "unknown" ||  config.swupdate2.state === "noupdates"
+                visible: config.swupdate2.checkforupdate === false  && (config.swupdate2.state === "unknown" ||  config.swupdate2.state === "noupdates")
                 onClicked: {bridge.setConfig({swupdate2: {checkforupdate: true}},
                                              function(success) {
                                                  console.log("up succ!",  JSON.stringify(success));
