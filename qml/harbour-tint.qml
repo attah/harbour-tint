@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
-import org.nemomobile.notifications 1.0
+import Nemo.Notifications 1.0
 import "pages"
 import "jshue.js" as Jshue
 
