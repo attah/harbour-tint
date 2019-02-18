@@ -142,7 +142,7 @@
     </message>
     <message>
         <source>Unpairing bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>Fin de l’association avec le pont</translation>
     </message>
 </context>
 <context>
