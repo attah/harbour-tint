@@ -69,10 +69,10 @@ Page {
             }
             MenuItem {
                 text: qsTr("New group")
-                onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
-                                                        {name: qsTr("New group")});
+                onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("InputDialog.qml"),
+                                                        {value: qsTr("New group"), title: qsTr("Name")});
                             dialog.accepted.connect(function() {
-                                bridge.createGroup({name: dialog.name, type: "Room",},
+                                bridge.createGroup({name: dialog.value, type: "Room",},
                                                 function(success) {
                                                     console.log("light succ!",  JSON.stringify(success));
                                                     page.populate();

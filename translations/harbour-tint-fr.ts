@@ -39,6 +39,10 @@
         <source>Deleting group</source>
         <translation>Suppression du groupe</translation>
     </message>
+    <message>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
 </context>
 <context>
     <name>BridgePropertiesPage</name>
@@ -182,6 +186,21 @@
         <source>Enable TouchLink</source>
         <translation>Activer TouchLink</translation>
     </message>
+    <message>
+        <source>Search by ID</source>
+        <translation type="unfinished">Chercher avec ID</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+</context>
+<context>
+    <name>PairByIdDialog</name>
+    <message>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
 </context>
 <context>
     <name>PairDialog</name>
@@ -196,13 +215,6 @@
     <message>
         <source>Success!</source>
         <translation>Réussi !</translation>
-    </message>
-</context>
-<context>
-    <name>RenameGroupDialog</name>
-    <message>
-        <source>Name</source>
-        <translation>Nom</translation>
     </message>
 </context>
 </TS>

@@ -5,8 +5,9 @@ Dialog {
     id: dialog
     anchors.fill: parent
 
-    property var name
-    canAccept: nameField.text !== ""
+    property string value
+    property string title
+    canAccept: valueField.text !== ""
 
     Column {
         width: parent.width
@@ -14,17 +15,17 @@ Dialog {
         DialogHeader { }
 
         TextField {
-            id: nameField
+            id: valueField
             width: parent.width
-            placeholderText: name
+            placeholderText: value
 
-            label: qsTr("Name")
+            label: title
         }
     }
 
     onDone: {
         if (result == DialogResult.Accepted) {
-            name = nameField.text
+            value = valueField.text
         }
     }
 

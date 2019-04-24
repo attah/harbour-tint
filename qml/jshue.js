@@ -415,6 +415,21 @@ var jsHueAPI = function(XMLHttpRequest, JSON) {
                          */
                         searchForNewLights: _post.bind(null, _lightsUrl, null),
                         /**
+                         * Searches for new lights by id.
+                         *
+                         * @method searchForNewLights
+                         * @param {List} list of 6-digit ids of lights to search for
+                         * @param {Function} success success callback
+                         * @param {Function} failure failure callback
+                         * @return {Boolean} true if request was sent, false otherwise
+                         */
+                        searchForNewLightsById: function(ids, success, failure) {
+                            var data = {
+                                deviceid: ids,
+                            };
+                            return _post(_lightsUrl, data, success, failure);
+                        },
+                        /**
                          * Gets light attributes and state.
                          *
                          * @method getLight

@@ -81,14 +81,23 @@ Page {
         PullDownMenu {
             id: searchMenu
             busy: retry.running
-//            MenuItem {
-//                text: qsTr("Search by ID")
-//                onClicked: {console.log("Search by ID")}
-//            }
             MenuItem {
                 text: qsTr("Enable TouchLink")
                 onClicked: touchLink()
             }
+            MenuItem {
+                text: qsTr("Search by ID")
+                onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("InputDialog.qml"),
+                                                        {value: qsTr("Search by ID"), title: qsTr("ID")});
+                    dialog.accepted.connect(function() {
+                        bridge.searchForNewLightsById([dialog.value],
+                                        function(success) {
+                                            console.log("light serach by id succ!",  JSON.stringify(success));
+                                            page.getNewLights();
+                                        },
+                                        notifier.notifyMessage);
+                        })
+                }            }
             MenuItem {
                 text: qsTr("Search again")
                 onClicked: {console.log("Search again"); search()}
