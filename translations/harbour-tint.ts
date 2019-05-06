@@ -43,6 +43,10 @@
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Sensors</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BridgePropertiesPage</name>
@@ -196,9 +200,13 @@
     </message>
 </context>
 <context>
-    <name>PairByIdDialog</name>
+    <name>NewSensorsPage</name>
     <message>
-        <source>Name</source>
+        <source>New Sensors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search again</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -214,6 +222,29 @@
     </message>
     <message>
         <source>Success!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SensorsPage</name>
+    <message>
+        <source>Sensors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Sensors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename sensor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete sensor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting sensor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

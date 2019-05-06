@@ -30,7 +30,9 @@ DISTFILES += qml/harbour-tint.qml \
     qml/pages/NewLightsPage.qml \
     qml/pages/EditGroupDialog.qml \
     qml/pages/BridgePropertiesPage.qml \
-    qml/pages/InputDialog.qml
+    qml/pages/InputDialog.qml \
+    qml/pages/SensorsPage.qml \
+    qml/pages/NewSensorsPage.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 

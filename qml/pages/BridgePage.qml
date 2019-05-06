@@ -64,6 +64,10 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("BridgePropertiesPage.qml"), {bridge: bridge})
             }
             MenuItem {
+                text: qsTr("Sensors")
+                onClicked: pageStack.push(Qt.resolvedUrl("SensorsPage.qml"), {bridge: bridge})
+            }
+            MenuItem {
                 text: qsTr("Lights")
                 onClicked: pageStack.push(Qt.resolvedUrl("LightsPage.qml"), {bridge: bridge})
             }
