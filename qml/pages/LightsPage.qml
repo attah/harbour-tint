@@ -92,7 +92,7 @@ Page {
 
                 MenuItem {
                     text: qsTr("Rename light")
-                    onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
+                    onClicked: {var dialog = pageStack.push(Qt.resolvedUrl("InputDialog.qml"),
                                                             {name: light.name});
                                 dialog.accepted.connect(function() {
                                     if (dialog.name !== light.name) {
