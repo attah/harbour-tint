@@ -196,13 +196,6 @@
     </message>
 </context>
 <context>
-    <name>PairByIdDialog</name>
-    <message>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>PairDialog</name>
     <message>
         <source>Pairing</source>
