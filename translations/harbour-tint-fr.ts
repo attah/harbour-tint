@@ -188,7 +188,7 @@
     </message>
     <message>
         <source>Search by ID</source>
-        <translation type="unfinished">Chercher avec ID</translation>
+        <translation>Recherche par ID</translation>
     </message>
     <message>
         <source>ID</source>
