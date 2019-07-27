@@ -247,6 +247,7 @@ Page {
                         width: parent.width
                         handleVisible: true
                         stepSize: 1
+                        anchors.verticalCenter: parent.verticalCenter
                         value: room.action.hue
                         onEvent: {
                             bridge.setGroupState(room_id, {hue: value},

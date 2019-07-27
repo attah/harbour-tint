@@ -15,8 +15,8 @@ MouseArea {
     property alias label: labelText.text
     property bool down: pressed
     property bool highlighted: down
-    property real leftMargin: Math.round(Screen.width/8)
-    property real rightMargin: Math.round(Screen.width/8)
+    property real leftMargin: Math.round(Screen.width/6.8)
+    property real rightMargin: Math.round(Screen.width/6.8)
 
     property real _oldValue
     property bool _tracking: true
