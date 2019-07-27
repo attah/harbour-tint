@@ -240,7 +240,7 @@ Page {
 //                        text: qsTr("Hue")
 //                        anchors.verticalCenter: parent.verticalCenter
 //                    }
-                    PacedSlider {
+                    ColorSlider {
                         id: hue_slider
                         minimumValue: 0
                         maximumValue: 65535
