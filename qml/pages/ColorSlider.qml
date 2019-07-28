@@ -26,8 +26,6 @@ MouseArea {
     property bool _widthChanged
     property bool _cancel
 
-    property bool _componentComplete
-
     property int synced_value: value
     property int pace: 500
 
@@ -267,7 +265,7 @@ MouseArea {
 
     states: State {
         name: "invalidRange"
-        when: _componentComplete && minimumValue >= maximumValue
+        when: completed && minimumValue >= maximumValue
         PropertyChanges {
             target: slider
             enabled: false
@@ -280,7 +278,6 @@ MouseArea {
 
     Component.onCompleted: {
         completed = true
-        _componentComplete = true
         _updateHighlightToValue()
     }
 }
