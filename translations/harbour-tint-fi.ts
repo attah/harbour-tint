@@ -199,7 +199,7 @@
     <name>PairDialog</name>
     <message>
         <source>Pairing</source>
-        <translation type="unfinished"></translation>
+        <translation>Liitetään pariksi</translation>
     </message>
     <message>
         <source>Press the pairing button</source>
