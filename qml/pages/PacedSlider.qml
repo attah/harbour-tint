@@ -52,6 +52,18 @@ Slider {
         rotation: 90
         visible: backgroundGradient != undefined
         gradient: backgroundGradient
+
+        onHeightChanged: {
+            if (gradient != undefined) {
+                // Compensate for that the handle does not go all the way to the ends
+                var scale = (height-2*parent._glassItemPadding)/height
+                var padding = parent._glassItemPadding/height
+                for(var i = 0; i < gradient.stops.length; i++) {
+                    gradient.stops[i].position = gradient.stops[i].position*scale + padding;
+                }
+            }
+        }
+
     }
 
 
