@@ -248,6 +248,38 @@ Page {
                         handleVisible: true
                         stepSize: 1
                         value: room.action.hue
+
+                        backgroundGradient: Gradient {
+                                                GradientStop {
+                                                     position: 0.000
+                                                     color: Qt.rgba(1, 0, 0, 1)
+                                                  }
+                                                  GradientStop {
+                                                     position: 0.167
+                                                     color: Qt.rgba(1, 0, 1, 1)
+                                                  }
+                                                  GradientStop {
+                                                     position: 0.333
+                                                     color: Qt.rgba(0, 0, 1, 1)
+                                                  }
+                                                  GradientStop {
+                                                     position: 0.500
+                                                     color: Qt.rgba(0, 1, 1, 1)
+                                                  }
+                                                  GradientStop {
+                                                     position: 0.667
+                                                     color: Qt.rgba(0, 1, 0, 1)
+                                                  }
+                                                  GradientStop {
+                                                     position: 0.833
+                                                     color: Qt.rgba(1, 1, 0, 1)
+                                                  }
+                                                  GradientStop {
+                                                     position: 1.000
+                                                     color: Qt.rgba(1, 0, 0, 1)
+                                                  }
+                                            }
+
                         onEvent: {
                             bridge.setGroupState(room_id, {hue: value},
                                                  function(success) {
