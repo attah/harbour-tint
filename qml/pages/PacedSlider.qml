@@ -51,16 +51,27 @@ Slider {
         anchors.centerIn: parent._backgroundItem
         rotation: 90
         visible: backgroundGradient != undefined
-        gradient: backgroundGradient
+        gradient: Gradient {}
+
+        Component
+        {
+            id:stopComponent
+            GradientStop {}
+        }
 
         onHeightChanged: {
-            if (gradient != undefined) {
+            if (backgroundGradient != undefined) {
                 // Compensate for that the handle does not go all the way to the ends
                 var scale = (height-2*parent._glassItemPadding)/height
                 var padding = parent._glassItemPadding/height
-                for(var i = 0; i < gradient.stops.length; i++) {
-                    gradient.stops[i].position = gradient.stops[i].position*scale + padding;
+                var adjustedStops = [];
+                for(var i = 0; i < backgroundGradient.stops.length; i++) {
+                    var stop = stopComponent.createObject(parent, {"position":backgroundGradient.stops[i].position*scale + padding,
+                                                                   "color":backgroundGradient.stops[i].color});
+
+                    adjustedStops.push(stop);
                 }
+                gradient.stops = adjustedStops
             }
         }
 
