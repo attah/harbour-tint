@@ -47,7 +47,7 @@ Slider {
 
     Rectangle {
         height: parent._grooveWidth
-        width: 20
+        width: parent._glassItemPadding
         anchors.centerIn: parent._backgroundItem
         rotation: 90
         visible: backgroundGradient != undefined
