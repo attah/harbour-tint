@@ -10,7 +10,8 @@ ApplicationWindow
     id: appWin
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
-    allowedOrientations: Orientation.Portrait
+    allowedOrientations: defaultAllowedOrientations
+    _defaultPageOrientations: Orientation.All
 
     property var current_global_group
     property var current_bridge

@@ -4,7 +4,6 @@ import Sailfish.Silica 1.0
 Dialog {
     id: dialog
     canAccept: false
-    anchors.fill: parent
 
     property string username
     property var bridge

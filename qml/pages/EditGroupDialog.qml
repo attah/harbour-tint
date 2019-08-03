@@ -3,7 +3,6 @@ import Sailfish.Silica 1.0
 
 Dialog {
     id: dialog
-    anchors.fill: parent
 
     property var bridge
     property var group_id
@@ -44,6 +43,7 @@ Dialog {
         model: lightsModel
         anchors.fill: parent
         anchors.topMargin: dialogHeader.height
+        clip: true
 
         delegate: ListItem {
             id: delegate

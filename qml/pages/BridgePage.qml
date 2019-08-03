@@ -148,10 +148,10 @@ Page {
                     visible: room_id != 0 && longclicked
                     text: qsTr("Rename group")
                     onClicked: {suppress_refresh = true;
-                                var dialog = pageStack.push(Qt.resolvedUrl("RenameGroupDialog.qml"),
-                                                            {name: room.name});
+                                var dialog = pageStack.push(Qt.resolvedUrl("InputDialog.qml"),
+                                                            {value: room.name, title: qsTr("Name")});
                                 dialog.accepted.connect(function() {
-                                    if (dialog.name !== room.name) {
+                                    if (dialog.value !== room.name) {
                                         bridge.setGroup(room_id, {name: dialog.name},
                                                         function(success) {
                                                             console.log("light succ!", room_id,  JSON.stringify(success));

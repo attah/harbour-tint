@@ -58,6 +58,7 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
+        contentHeight: column.height
 
         PullDownMenu {
             busy: config.swupdate2.checkforupdate === true || config.swupdate2.state === "transferring" || config.swupdate2.state === "installing"
