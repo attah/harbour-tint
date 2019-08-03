@@ -207,6 +207,8 @@ Page {
                     Image {
                         id: ct_icon
                         source: "ct.png"
+                        width: Theme.iconSizeMedium
+                        height: Theme.iconSizeMedium
                     }
 //                    Label {
 //                        text: qsTr("Ct") // Color temperature
@@ -235,6 +237,8 @@ Page {
                     Image {
                         id: hue_icon
                         source: "rgb.png"
+                        width: Theme.iconSizeMedium
+                        height: Theme.iconSizeMedium
                     }
 //                    Label {
 //                        text: qsTr("Hue")
