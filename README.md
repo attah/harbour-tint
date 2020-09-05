@@ -1,6 +1,8 @@
 # harbour-tint
 Philips Hue app for Sailfish OS
 
+![Tint icon](icons/172x172/harbour-tint.png)
+
 `Tint /tɪnt/:
   a slight or pale coloration, hue`
 
