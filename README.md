@@ -1,4 +1,4 @@
-# harbour-tint
+# Tint
 Philips Hue app for Sailfish OS
 
 ![Tint icon](icons/172x172/harbour-tint.png)
