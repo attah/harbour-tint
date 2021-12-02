@@ -14,21 +14,13 @@ void migrateLocalStorage()
     newDbDir.mkpath(newDbDir.path());
 
     QString dbname = QString(QCryptographicHash::hash(("TintDB"), QCryptographicHash::Md5).toHex());
-    // The new LocalStorage database
-    QFile newDb(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/net.attah/tint/QML/OfflineStorage/Databases/" + dbname + ".sqlite");
-    QFile newIni(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/net.attah/tint/QML/OfflineStorage/Databases/" + dbname + ".ini");
 
     // The old LocalStorage database
     QFile oldDb(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/harbour-tint/harbour-tint/QML/OfflineStorage/Databases/" + dbname + ".sqlite");
     QFile oldIni(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/harbour-tint/harbour-tint/QML/OfflineStorage/Databases/" + dbname + ".ini");
 
-    oldDb.open(QFile::ReadOnly);
-    oldIni.open(QFile::ReadOnly);
-    newDb.open(QFile::WriteOnly);
-    newIni.open(QFile::WriteOnly);
-
-    newDb.write(oldDb.readAll());
-    newIni.write(oldIni.readAll());
+    oldDb.copy(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/net.attah/tint/QML/OfflineStorage/Databases/" + dbname + ".sqlite");
+    oldIni.copy(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/net.attah/tint/QML/OfflineStorage/Databases/" + dbname + ".ini");
 }
 
 
