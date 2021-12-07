@@ -12,12 +12,41 @@ Page {
     }
 
     function populate() {
+        console.log("pop");
         bridgesModel.reset();
     }
 
     HueDiscoveryModel {
         id: bridgesModel
     }
+
+    Connections {
+        target: wifi
+
+        property bool initialSSIDchange: true
+
+        onSsidChanged: {
+            if(!initialSSIDchange)
+            {
+                populate()
+            }
+            initialSSIDchange = false;
+        }
+        onConnectedChanged: {
+            if(wifi.connected == false)
+            {
+                first_start = true
+            }
+        }
+    }
+
+    Label {
+        text: qsTr("Not on WiFi")
+        color: Theme.highlightColor
+        anchors.centerIn: parent
+        visible: !wifi.connected
+    }
+
 
     SilicaFlickable {
         anchors.fill: parent

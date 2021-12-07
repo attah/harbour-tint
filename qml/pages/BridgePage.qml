@@ -11,6 +11,15 @@ Page {
         appWin.current_bridge = bridge;
     }
 
+    Connections {
+        target: wifi
+        onConnectedChanged: {
+            if(!wifi.connected) {
+                pageStack.pop()
+            }
+        }
+    }
+
     function populate() {
         groupsModel.clear();
         bridge.getGroup(0,

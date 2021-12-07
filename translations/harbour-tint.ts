@@ -148,6 +148,10 @@
         <source>Unpairing bridge</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Not on WiFi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LightsPage</name>

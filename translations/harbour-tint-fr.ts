@@ -148,6 +148,10 @@
         <source>Unpairing bridge</source>
         <translation>Fin de l’association avec le pont</translation>
     </message>
+    <message>
+        <source>Not on WiFi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LightsPage</name>

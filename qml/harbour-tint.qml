@@ -16,6 +16,10 @@ ApplicationWindow
     property var current_global_group
     property var current_bridge
 
+    WifiChecker {
+        id: wifi
+    }
+
     Item {
         id: hue_holder
         property var hue
