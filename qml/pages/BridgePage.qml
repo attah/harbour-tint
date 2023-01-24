@@ -161,7 +161,7 @@ Page {
                                                             {value: room.name, title: qsTr("Name")});
                                 dialog.accepted.connect(function() {
                                     if (dialog.value !== room.name) {
-                                        bridge.setGroup(room_id, {name: dialog.name},
+                                        bridge.setGroup(room_id, {name: dialog.value},
                                                         function(success) {
                                                             console.log("light succ!", room_id,  JSON.stringify(success));
                                                             page.populate();
